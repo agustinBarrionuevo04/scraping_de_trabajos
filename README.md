@@ -32,17 +32,47 @@ export ADZUNA_APP_KEY="tu_app_key"
 ## Uso
 
 ```bash
-python scraper.py                          # con defaults
+# Scrapear y guardar
+python scraper.py
+
+# Solo reportar sin escribir en DB
+python scraper.py --dry-run
+
+# Con más detalle en logs
+python scraper.py --verbose
+```
+
+## Scoring semántico
+
+Se puede puntuar las ofertas contra tu perfil personal (`profile.txt`) usando
+un modelo multilingual de sentence-transformers que mide la similitud semántica
+entre tu perfil y la descripción de cada oferta.
+
+```bash
+# Scrapear + puntuar ofertas nuevas (solo las no puntuadas)
+python scraper.py --score
+
+# Ajustar el umbral mínimo para el resumen (default 0.5)
+python scraper.py --score --threshold 0.7
+
+# Re-puntuar todas las ofertas (incluso las ya puntuadas)
+python scraper.py --score --rescore-all
+```
+
+Los scores se persisten en la tabla `jobs` (columnas `match_score` y `scored_at`)
+y son visibles desde la UI de Streamlit.
+
+## Scraper avanzado
+
+```bash
 python scraper.py --config config.yaml     # config explícito
 python scraper.py --db jobs.db             # DB explícita
-python scraper.py --dry-run                # solo reporta, no escribe
-python scraper.py --verbose                # logs en DEBUG
 ```
 
 ## Configuración
 
-Editar `config.yaml` para cambiar términos de búsqueda, ubicaciones y
-cantidad de resultados por búsqueda.
+Editar `config.yaml` para cambiar términos de búsqueda, ubicaciones,
+cantidad de resultados por búsqueda y ruta del archivo de perfil.
 
 ## Interfaz Streamlit
 
