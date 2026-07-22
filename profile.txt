@@ -1,0 +1,15 @@
+Soy un Data Scientist con 3 años de experiencia en machine learning,
+deep learning y procesamiento de lenguaje natural (NLP). Tengo experiencia
+con Python, PyTorch, TensorFlow, scikit-learn, pandas, y SQL. He trabajado
+en proyectos de clasificación, regresión, computer vision y NLP usando
+modelos transformer como BERT. Busco roles de Data Scientist o ML Engineer
+con foco en NLP, computer vision o sistemas de recomendación. Prefiero
+trabajo remoto y empresas con cultura de datos madura.
+
+I am a Data Scientist with 3 years of experience in machine learning,
+deep learning and natural language processing (NLP). I have experience
+with Python, PyTorch, TensorFlow, scikit-learn, pandas, and SQL. I have
+worked on classification, regression, computer vision and NLP projects
+using transformer models like BERT. I am looking for Data Scientist or
+ML Engineer roles with focus on NLP, computer vision or recommendation
+systems. I prefer remote work and companies with a mature data culture.

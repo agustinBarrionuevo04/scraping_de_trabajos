@@ -1,0 +1,41 @@
+# Cómo correr el scraper
+
+## Setup (solo la primera vez)
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Variables de entorno (opcional, para Adzuna)
+
+```bash
+export ADZUNA_APP_ID="tu_app_id"
+export ADZUNA_APP_KEY="tu_app_key"
+```
+
+## Correr el scraper
+
+```bash
+source venv/bin/activate
+
+# Scrapear y guardar en DB
+python scraper.py
+
+# Solo ver cuántas ofertas nuevas encontraría (sin escribir en DB)
+python scraper.py --dry-run
+
+# Con más detalle en los logs
+python scraper.py --verbose
+
+# Con archivos de configuración o DB custom
+python scraper.py --config config.yaml --db jobs.db
+```
+
+## Correr los tests
+
+```bash
+source venv/bin/activate
+pytest tests/ -v
+```

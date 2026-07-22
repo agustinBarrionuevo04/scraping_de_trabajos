@@ -1,0 +1,16 @@
+search_terms:
+  - "data scientist"
+  - "machine learning engineer"
+  - "ml engineer"
+  - "data science"
+  - "junior data scientist"
+locations:
+  - "Remote"
+  - "Argentina"
+  - "Córdoba, Argentina"
+  - "Spain"
+results_per_search: 50
+# delay between requests in seconds (for jobspy rate-limiting)
+delay_seconds: 4
+# path to candidate profile text file for semantic scoring
+profile_path: "profile.txt"
