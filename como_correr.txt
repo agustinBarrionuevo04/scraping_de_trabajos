@@ -33,6 +33,13 @@ python scraper.py --verbose
 python scraper.py --config config.yaml --db jobs.db
 ```
 
+## Interfaz Streamlit (revisar ofertas)
+
+```bash
+source venv/bin/activate
+streamlit run app.py
+```
+
 ## Correr los tests
 
 ```bash

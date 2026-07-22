@@ -44,6 +44,28 @@ python scraper.py --verbose                # logs en DEBUG
 Editar `config.yaml` para cambiar términos de búsqueda, ubicaciones y
 cantidad de resultados por búsqueda.
 
+## Interfaz Streamlit
+
+Para revisar las ofertas scrapeadas con una UI interactiva:
+
+```bash
+streamlit run app.py
+```
+
+La ruta de `jobs.db` se puede configurar vía variable de entorno:
+
+```bash
+export JOBS_DB_PATH=/ruta/a/jobs.db
+streamlit run app.py
+```
+
+### Filtros disponibles
+
+- **Score mínimo** — slider para filtrar por `match_score` (las ofertas sin puntuar siempre se muestran)
+- **Source** y **Location** — multiselect con valores únicos de la DB
+- **Buscar en título/empresa** — texto libre, case-insensitive
+- **Orden** — por score, fecha de publicación o fecha de scraping (descendente)
+
 ## Tests
 
 ```bash
@@ -54,14 +76,19 @@ pytest tests/ -v
 
 ```
 .
-├── config.yaml          # términos de búsqueda y ubicaciones
+├── app.py                # interfaz Streamlit para revisar ofertas
+├── config.yaml           # términos de búsqueda y ubicaciones
 ├── requirements.txt
-├── scraper.py           # entry point, orquesta todo
+├── scraper.py            # entry point del scraper, orquesta todo
+├── scoring.py            # scoring semántico con sentence-transformers
 ├── sources/
 │   ├── jobspy_source.py
 │   └── adzuna_source.py
-├── db.py                # SQLite (insert, dedupe, query)
-├── models.py            # schema normalizado (dataclass)
+├── ui/
+│   └── data_loader.py    # carga cacheada de jobs.db a DataFrame
+├── db.py                 # SQLite (insert, dedupe, query)
+├── models.py             # schema normalizado (dataclass)
 └── tests/
-    └── test_dedupe.py   # tests de lógica de dedupe
+    ├── test_dedupe.py    # tests de lógica de dedupe
+    └── test_scoring.py   # tests de scoring
 ```
