@@ -10,6 +10,7 @@ import yaml
 
 from db import count_jobs, init_db, upsert_job
 from models import Job
+from role_filter import filter_by_role
 from sources.adzuna_source import scrape as scrape_adzuna
 from sources.jobspy_source import scrape as scrape_jobspy
 
@@ -163,6 +164,14 @@ def main() -> None:
         logger.info("Adzuna total: %d jobs", len(adzuna_jobs))
     except Exception:
         logger.exception("Adzuna source failed entirely")
+
+    roles: list[str] = config.get("roles", [])
+    if roles:
+        before = len(all_jobs)
+        all_jobs = [job for job in all_jobs if filter_by_role(job.title, roles)]
+        filtered = before - len(all_jobs)
+        if filtered:
+            logger.info("Role filter: dropped %d jobs, kept %d (roles=%s)", filtered, len(all_jobs), roles)
 
     unique_ids = len({job.id for job in all_jobs})
     logger.info("Collected %d jobs (%d unique by id)", len(all_jobs), unique_ids)
